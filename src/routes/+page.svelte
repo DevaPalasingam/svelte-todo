@@ -1,2 +1,21 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+  import TodoForm from "../components/TodoForm.svelte";
+  import { todos } from "../stores/todoStore";
+  import Todo from "../components/Todo.svelte";
+</script>
+
+<main>
+  <h1 class="text-2xl font-bold text-center text-gray-800 md:text-3xl">
+    Todo List
+  </h1>
+  <TodoForm />
+  {#each $todos as todo, index (todo.id)}
+    <Todo {todo} {index} />
+  {/each}
+</main>
+
+<style lang="postcss">
+  :global(html) {
+    background-color: theme(colors.gray.100);
+  }
+</style>
